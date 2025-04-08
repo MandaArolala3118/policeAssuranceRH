@@ -28,6 +28,24 @@ export const typeDefs = gql`
   type Query {
     employes: [Employe]
   }
+    extend type Mutation {
+  ajouterEmploye(
+    nom: String!
+    numeroEmploye: Int!
+    adresse: AdresseInput!
+  ): Employe
+
+  ajouterPoliceAssurance(
+    numeroPolice: Int!
+    idEmploye: Int!
+  ): PoliceAssurance
+}
+
+input AdresseInput {
+  rue: String!
+  ville: String!
+}
+
 
 `;
 
