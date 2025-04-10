@@ -4,49 +4,35 @@ export const typeDefs = gql`
   type Adresse {
     rue: String
     ville: String
-    codePostale: String
-  }
-
-  type Beneficiaire {
-    nom: String
-  }
-
-  type PoliceAssurance {
-    numeroPolice: String
-    beneficiairePrincipal: Beneficiaire
-    listeBeneficiaire: [Beneficiaire]
   }
 
   type Employe {
-    numeroEmploye: String
+    id: Int
     nom: String
-    numeroPoliceAssurance: String
-    policeAssurance: PoliceAssurance
+    numeroEmploye: Int
     adresse: Adresse
+    policeAssurance: PoliceAssurance
+  }
+
+  type PoliceAssurance {
+    id: Int
+    numeroPolice: Int
+    titulaire: Employe
+    listeBeneficiaire: [Employe]
+  }
+
+  input AdresseInput {
+    rue: String!
+    ville: String!
   }
 
   type Query {
     employes: [Employe]
+    policesAssurance: [PoliceAssurance]
   }
-    extend type Mutation {
-  ajouterEmploye(
-    nom: String!
-    numeroEmploye: Int!
-    adresse: AdresseInput!
-  ): Employe
 
-  ajouterPoliceAssurance(
-    numeroPolice: Int!
-    idEmploye: Int!
-  ): PoliceAssurance
-}
-
-input AdresseInput {
-  rue: String!
-  ville: String!
-}
-
-
-`;
-
-
+  type Mutation {
+    ajouterEmploye(nom: String!, numeroEmploye: Int!, adresse: AdresseInput!): Employe
+    ajouterPoliceAssurance(numeroPolice: Int!, idEmploye: Int!): PoliceAssurance
+  }
+`
