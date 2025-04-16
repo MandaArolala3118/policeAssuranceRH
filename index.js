@@ -14,7 +14,8 @@ server.applyMiddleware({ app })
 
 app.get('/playground', playground({ endpoint: '/graphql' }))
 
-app.listen({ port: 4000 }, () => {
-  console.log(`🚀 Serveur prêt sur http://localhost:4000${server.graphqlPath}`)
-  console.log(`🎮 Playground dispo sur http://localhost:4000/playground`)
-})
+    app.listen({ port: 4000 }, () => {
+      console.log(`🚀 Serveur prêt sur http://localhost:4000${server.graphqlPath}`)
+      console.log(`🎮 Playground dispo sur http://localhost:4000/playground`)
+    })
+
