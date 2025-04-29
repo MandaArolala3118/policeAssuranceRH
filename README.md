@@ -227,4 +227,4 @@ Des exemples de requêtes sont disponibles dans le fichier `queries-examples.gra
    }
    ```
 
-Pour plus d'exemples, consultez le fichier `queries-examples.graphql`.
+Pour plus d'exemples, consultez le fichier `queries-examples.txt`.
