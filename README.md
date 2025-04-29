@@ -23,8 +23,8 @@ Ce projet est une API GraphQL permettant d'interagir avec trois bases de donnée
 
 1. Clonez ce dépôt :
    ```bash
-   git clone https://github.com/votre-nom/multi-db-graphql-api.git
-   cd multi-db-graphql-api
+   git clone https://github.com/MandaArolala3118/policeAssuranceRH
+   cd policeAssuranceRH
    ```
 
 2. Installez les dépendances :
