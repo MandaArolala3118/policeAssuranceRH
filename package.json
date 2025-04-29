@@ -1,0 +1,25 @@
+{
+    "name": "multi-db-graphql-api",
+    "version": "1.0.0",
+    "description": "API GraphQL pour accéder à plusieurs bases de données",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "node src/index.js",
+        "dev": "nodemon src/index.js"
+    },
+    "dependencies": {
+        "apollo-server-express": "^3.12.1",
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "graphql": "^16.8.1",
+        "graphql-playground-middleware-express": "^1.7.23",
+        "mysql2": "^3.6.3",
+        "sequelize": "^6.37.7"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
