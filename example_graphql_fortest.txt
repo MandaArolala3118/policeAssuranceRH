@@ -1,0 +1,313 @@
+query GetAllEmployes {
+  employes {
+    employee_number
+    name
+    insurance_policy_number
+    address {
+      id
+      street
+      city
+      postal_code
+    }
+  }
+}
+
+query GetEmploye {
+  employe(employee_number: "EMP002") {
+    employee_number
+    name
+    insurance_policy_number
+    address {
+      street
+      city
+      postal_code
+    }
+    insurancePolicy {
+      policy_number
+      primaryBeneficiaries {
+        id
+        name
+      }
+      beneficiaries {
+        id
+        name
+      }
+    }
+  }
+}
+
+query GetAllAdresses {
+  adresses {
+    id
+    street
+    city
+    postal_code
+  }
+}
+
+query GetAdresse {
+  adresse(id: "1") {
+    id
+    street
+    city
+    postal_code
+  }
+}
+
+mutation CreateAdresse {
+  createAdresse(adresse: {
+    street: "123 Rue Principale"
+    city: "Paris"
+    postal_code: "75001"
+  }) {
+    id
+    street
+    city
+    postal_code
+  }
+}
+
+mutation UpdateAdresse {
+  updateAdresse(
+    id: "1", 
+    adresse: {
+      street: "456 Avenue des Champs-Élysées"
+      city: "Paris"
+      postal_code: "75008"
+    }
+  ) {
+    id
+    street
+    city
+    postal_code
+  }
+}
+
+mutation DeleteAdresse {
+  deleteAdresse(id: "1")
+}
+
+mutation CreateEmploye {
+  createEmploye(employe: {
+    employee_number: "EMP001"
+    name: "Jean Dupont"
+    insurance_policy_number: "POL123"
+    address_id: 1
+  }) {
+    employee_number
+    name
+    insurance_policy_number
+    address {
+      street
+      city
+    }
+  }
+}
+
+mutation UpdateEmploye {
+  updateEmploye(
+    employee_number: "EMP001",
+    employe: {
+      name: "Jean Martin"
+      insurance_policy_number: "POL456"
+    }
+  ) {
+    employee_number
+    name
+    insurance_policy_number
+  }
+}
+
+mutation DeleteEmploye {
+  deleteEmploye(employee_number: "EMP001")
+}
+
+query GetAllInsuranceCompanies {
+  insuranceCompanies {
+    id
+    name
+  }
+}
+
+query GetInsuranceCompany {
+  insuranceCompany(id: "1") {
+    id
+    name
+  }
+}
+
+query GetAllInsurancePolicies {
+  insurancePolicies {
+    policy_number
+    primaryBeneficiaries {
+      id
+      name
+    }
+    beneficiaries {
+      id
+      name
+    }
+    employe {
+      employee_number
+      name
+    }
+  }
+}
+
+query GetInsurancePolicy {
+  insurancePolicy(policy_number: "POL123") {
+    policy_number
+    primaryBeneficiaries {
+      id
+      name
+    }
+    beneficiaries {
+      id
+      name
+    }
+    employe {
+      employee_number
+      name
+    }
+  }
+}
+
+query GetAllBeneficiaries {
+  beneficiaries {
+    id
+    name
+    primaryPolicies {
+      policy_number
+    }
+    policies {
+      policy_number
+    }
+  }
+}
+
+query GetBeneficiary {
+  beneficiary(id: "1") {
+    id
+    name
+    primaryPolicies {
+      policy_number
+    }
+    policies {
+      policy_number
+    }
+  }
+}
+
+mutation CreateInsuranceCompany {
+  createInsuranceCompany(company: {
+    name: "AXA Assurances"
+  }) {
+    id
+    name
+  }
+}
+mutation UpdateInsuranceCompany {
+  updateInsuranceCompany(
+    id: "1",
+    company: {
+      name: "AXA Assurance International"
+    }
+  ) {
+    id
+    name
+  }
+}
+
+mutation DeleteInsuranceCompany {
+  deleteInsuranceCompany(id: "1")
+}
+
+mutation CreateInsurancePolicy {
+  createInsurancePolicy(policy: {
+    policy_number: "POL123"
+  }) {
+    policy_number
+  }
+}
+
+mutation DeleteInsurancePolicy {
+  deleteInsurancePolicy(policy_number: "POL123")
+}
+
+mutation CreateBeneficiary {
+  createBeneficiary(beneficiary: {
+    name: "Marie Dubois"
+  }) {
+    id
+    name
+  }
+}
+
+mutation UpdateBeneficiary {
+  updateBeneficiary(
+    id: "1",
+    beneficiary: {
+      name: "Marie Martin"
+    }
+  ) {
+    id
+    name
+  }
+}
+
+mutation DeleteBeneficiary {
+  deleteBeneficiary(id: "1")
+}
+
+mutation AddPrimaryBeneficiary {
+  addPrimaryBeneficiary(
+    policy_number: "POL123",
+    beneficiary_id: "1"
+  )
+}
+
+mutation RemovePrimaryBeneficiary {
+  removePrimaryBeneficiary(
+    policy_number: "POL123",
+    beneficiary_id: "1"
+  )
+}
+
+mutation AddBeneficiaryToList {
+  addBeneficiaryToList(
+    policy_number: "POL123",
+    beneficiary_id: "2"
+  )
+}
+
+mutation RemoveBeneficiaryFromList {
+  removeBeneficiaryFromList(
+    policy_number: "POL123",
+    beneficiary_id: "2"
+  )
+}
+
+query GetAllHRAdvisors {
+  hrAdvisors {
+    identifier
+  }
+}
+
+query GetHRAdvisor {
+  hrAdvisor(identifier: "HR001") {
+    identifier
+  }
+}
+
+mutation CreateHRAdvisor {
+  createHRAdvisor(advisor: {
+    identifier: "HR001"
+  }) {
+    identifier
+  }
+}
+
+mutation DeleteHRAdvisor {
+  deleteHRAdvisor(identifier: "HR001")
+}
+
