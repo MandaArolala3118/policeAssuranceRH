@@ -91,80 +91,80 @@ project-root/
 ## Base de données
 
    ```sql
-   -- Création des bases
+   -- Create the databases
 CREATE DATABASE IF NOT EXISTS EmployeDB;
 CREATE DATABASE IF NOT EXISTS AssuranceDB;
 CREATE DATABASE IF NOT EXISTS RHDB;
 
 -- ============================
--- Base EmployeDB
+-- EmployeDB Database
 -- ============================
 USE EmployeDB;
 
 CREATE TABLE IF NOT EXISTS Adresse (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    rue VARCHAR(255),
-    ville VARCHAR(100),
-    code_postale VARCHAR(20)
+    street VARCHAR(255),
+    city VARCHAR(100),
+    postal_code VARCHAR(20)
 );
 
 CREATE TABLE IF NOT EXISTS Employe (
-    numero_employe VARCHAR(50) PRIMARY KEY,
-    nom VARCHAR(255),
-    numero_police_assurance VARCHAR(50), -- Liaison logique vers AssuranceDB.PoliceAssurance
-    adresse_id INT,
-    FOREIGN KEY (adresse_id) REFERENCES Adresse(id)
+    employee_number VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(255),
+    insurance_policy_number VARCHAR(50), -- Logical link to AssuranceDB.PoliceAssurance
+    address_id INT,
+    FOREIGN KEY (address_id) REFERENCES Adresse(id)
 );
 
 -- ============================
--- Base AssuranceDB
+-- AssuranceDB Database
 -- ============================
 USE AssuranceDB;
 
-CREATE TABLE IF NOT EXISTS CompagnieAssurance (
+CREATE TABLE IF NOT EXISTS InsuranceCompany (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(255)
+    name VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS PoliceAssurance (
-    numero_police VARCHAR(50) PRIMARY KEY
-    -- On peut ajouter une compagnie_assurance_id si besoin
+CREATE TABLE IF NOT EXISTS InsurancePolicy (
+    policy_number VARCHAR(50) PRIMARY KEY
+    -- You can add insurance_company_id if needed
 );
 
-CREATE TABLE IF NOT EXISTS Beneficiaire (
+CREATE TABLE IF NOT EXISTS Beneficiary (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(255)
+    name VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS BeneficiairePrincipal (
-    police_assurance_id VARCHAR(50),
-    beneficiaire_id INT,
-    PRIMARY KEY (police_assurance_id, beneficiaire_id),
-    FOREIGN KEY (police_assurance_id) REFERENCES PoliceAssurance(numero_police),
-    FOREIGN KEY (beneficiaire_id) REFERENCES Beneficiaire(id)
+CREATE TABLE IF NOT EXISTS PrimaryBeneficiary (
+    insurance_policy_id VARCHAR(50),
+    beneficiary_id INT,
+    PRIMARY KEY (insurance_policy_id, beneficiary_id),
+    FOREIGN KEY (insurance_policy_id) REFERENCES InsurancePolicy(policy_number),
+    FOREIGN KEY (beneficiary_id) REFERENCES Beneficiary(id)
 );
 
-CREATE TABLE IF NOT EXISTS ListeBeneficiaire (
-    police_assurance_id VARCHAR(50),
-    beneficiaire_id INT,
-    PRIMARY KEY (police_assurance_id, beneficiaire_id),
-    FOREIGN KEY (police_assurance_id) REFERENCES PoliceAssurance(numero_police),
-    FOREIGN KEY (beneficiaire_id) REFERENCES Beneficiaire(id)
+CREATE TABLE IF NOT EXISTS BeneficiaryList (
+    insurance_policy_id VARCHAR(50),
+    beneficiary_id INT,
+    PRIMARY KEY (insurance_policy_id, beneficiary_id),
+    FOREIGN KEY (insurance_policy_id) REFERENCES InsurancePolicy(policy_number),
+    FOREIGN KEY (beneficiary_id) REFERENCES Beneficiary(id)
 );
 
 -- ============================
--- Base RHDB
+-- RHDB Database
 -- ============================
 USE RHDB;
 
-CREATE TABLE IF NOT EXISTS ConseillerRH (
-    identifiant VARCHAR(50) PRIMARY KEY
+CREATE TABLE IF NOT EXISTS HRAdvisor (
+    identifier VARCHAR(50) PRIMARY KEY
 );
 
 -- ============================
--- Fin du script
+-- End of script
 -- ============================
-   ```
+```
 
 ## Utilisation de l'API GraphQL
 
