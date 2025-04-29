@@ -186,7 +186,7 @@ L'API GraphQL offre une interface unique pour interroger et manipuler les donné
 
 ## Exemples de requêtes
 
-Des exemples de requêtes sont disponibles dans le fichier `queries-examples.graphql`.
+Des exemples de requêtes sont disponibles dans le fichier `queries-examples.txt`.
 
 ### Exemples de base
 
